@@ -36,23 +36,23 @@
 
     /* Home hero */
     #home {
-  height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #fff;
-  text-align: center;
-  background: linear-gradient(rgba(0,0,0,.45), rgba(0,0,0,.45)), url('Picture2.png') center/cover no-repeat;
-  padding: 0 !important; /* Remove any padding */
-  margin: 0; /* Remove any margin */
-  width: 100%; /* Ensure full width */
-  max-width: none; /* Remove max-width constraint */
-}
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      text-align: center;
+      background: linear-gradient(rgba(0,0,0,.45), rgba(0,0,0,.45)), url('Picture2.png') center/cover no-repeat;
+      padding: 0 !important;
+      margin: 0;
+      width: 100%;
+      max-width: none;
+    }
     .hero-content {
-  max-width: 900px;
-  padding: 0 18px;
-  width: 100%; /* Ensure content takes full available width */
-}
+      max-width: 900px;
+      padding: 0 18px;
+      width: 100%;
+    }
     .hero-content h1{font-size:2.8rem;margin-bottom:14px;text-shadow:2px 2px 6px rgba(0,0,0,.6)}
     .hero-content p{font-size:1.1rem;margin-bottom:18px;text-shadow:1px 1px 3px rgba(0,0,0,.6)}
     .cta-button{background:#ff6600;color:#fff;padding:12px 28px;border-radius:6px;font-weight:700;cursor:pointer;display:inline-block}
@@ -76,6 +76,111 @@
 
     footer{background:#202020;color:#fff;text-align:center;padding:18px 12px;position:fixed;bottom:0;width:100%}
 
+    /* Background slideshow for Services and dropdown sections */
+    #services, #mechanical, #tmm, #consultation {
+      position: relative;
+      min-height: 100vh;
+      color: white;
+      overflow: hidden;
+      padding: 0 !important;
+      max-width: none !important;
+    }
+
+    .slideshow-background {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+    }
+
+    .slideshow-background .slide {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      opacity: 0;
+      transition: opacity 1.5s ease-in-out;
+    }
+
+    .slideshow-background .slide.active {
+      opacity: 1;
+    }
+
+    .slideshow-background .slide img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: brightness(60%);
+    }
+
+    .services-overlay, .dropdown-overlay {
+      position: relative;
+      z-index: 1;
+      padding: 140px 24px 80px 24px;
+      max-width: 1100px;
+      margin: 0 auto;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .services-content, .dropdown-content-section {
+      background: rgba(0, 0, 0, 0.7);
+      padding: 40px;
+      border-radius: 10px;
+      width: 100%;
+      max-width: 900px;
+    }
+
+    .services-content h2, .dropdown-content-section h2 {
+      color: #ff6600;
+      font-size: 2.2rem;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    .services-content > p, .dropdown-content-section > p {
+      color: #fff;
+      font-size: 1.2rem;
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .service-card {
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      color: white;
+    }
+
+    .service-card h3 {
+      color: #ff6600;
+    }
+
+    .service-card p {
+      color: #fff;
+    }
+
+    /* Specific styling for dropdown section content */
+    .dropdown-content-section .section-content {
+      background: transparent;
+      box-shadow: none;
+      padding: 0;
+    }
+
+    .dropdown-content-section .service-card {
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      margin: 20px 0;
+    }
+
+    .dropdown-content-section ul li {
+      color: #fff;
+    }
+
     @media(max-width:768px){
       .menu-toggle{display:block}
       nav{display:none;flex-direction:column;width:100%;margin-top:8px;padding-bottom:8px}
@@ -84,6 +189,12 @@
       .dropdown-content{position:static;box-shadow:none;margin-left:8px}
       .content-section{padding:110px 16px 120px 16px}
       .hero-content h1{font-size:2rem}
+      .services-overlay, .dropdown-overlay {
+        padding: 120px 16px 80px 16px;
+      }
+      .services-content, .dropdown-content-section {
+        padding: 20px;
+      }
     }
   </style>
 </head>
@@ -146,80 +257,134 @@
 
   <!-- SERVICES OVERVIEW -->
   <section id="services" class="content-section">
-    <div class="section-content">
-      <h2>Our Services</h2>
-      <p>We offer comprehensive engineering and maintenance solutions tailored to meet your specific needs.</p>
+    <div class="slideshow-background">
+      <div class="slide active"><img src="Picture4.png" alt="Service Image 1"></div>
+      <div class="slide"><img src="Picture5.png" alt="Service Image 2"></div>
+      <div class="slide"><img src="Picture6.png" alt="Service Image 3"></div>
+      <div class="slide"><img src="Picture7.png" alt="Service Image 4"></div>
+      <div class="slide"><img src="Picture8.png" alt="Service Image 5"></div>
+      <div class="slide"><img src="Picture9.png" alt="Service Image 6"></div>
+      <div class="slide"><img src="Picture10.png" alt="Service Image 7"></div>
+    </div>
 
-      <div class="service-card" onclick="showSection('mechanical')" style="cursor:pointer">
-        <h3>Mechanical Engineering</h3>
-        <p>Complete mechanical engineering solutions including maintenance, repairs, and technical support.</p>
-      </div>
+    <div class="services-overlay">
+      <div class="services-content">
+        <h2>Our Services</h2>
+        <p>We offer comprehensive engineering and maintenance solutions tailored to meet your specific needs.</p>
 
-      <div class="service-card" onclick="showSection('tmm')" style="cursor:pointer">
-        <h3>Trackless Mobile Machinery</h3>
-        <p>Specialized maintenance and repair services for trackless mobile machinery in mining and construction.</p>
-      </div>
+        <div class="service-card" onclick="showSection('mechanical')" style="cursor:pointer">
+          <h3>Mechanical Engineering</h3>
+          <p>Complete mechanical engineering solutions including maintenance, repairs, and technical support.</p>
+        </div>
 
-      <div class="service-card" onclick="showSection('consultation')" style="cursor:pointer">
-        <h3>Consultation Services</h3>
-        <p>Expert consulting services for engineering projects, maintenance strategies, and technical solutions.</p>
+        <div class="service-card" onclick="showSection('tmm')" style="cursor:pointer">
+          <h3>Trackless Mobile Machinery</h3>
+          <p>Specialized maintenance and repair services for trackless mobile machinery in mining and construction.</p>
+        </div>
+
+        <div class="service-card" onclick="showSection('consultation')" style="cursor:pointer">
+          <h3>Consultation Services</h3>
+          <p>Expert consulting services for engineering projects, maintenance strategies, and technical solutions.</p>
+        </div>
       </div>
     </div>
   </section>
 
   <!-- MECHANICAL -->
   <section id="mechanical" class="content-section">
-    <div class="section-content">
-      <h2>Mechanical Engineering Services</h2>
-      <div class="service-card">
-        <h3>Our Mechanical Engineering Services Include:</h3>
-        <ul>
-          <li>Full scope reline including planning and execution management</li>
-          <li>Skilled Artisans (Diesel mechanics, Auto Electricians, Welders, Boilermakers &amp; Fitters)</li>
-          <li>Training for new equipment installation and maintenance</li>
-          <li>Providing dedicated maintenance crews for machinery</li>
-          <li>Preventive and corrective maintenance programs</li>
-          <li>Equipment commissioning and decommissioning</li>
-        </ul>
+    <div class="slideshow-background">
+      <div class="slide active"><img src="Picture4.png" alt="Mechanical Engineering Image 1"></div>
+      <div class="slide"><img src="Picture5.png" alt="Mechanical Engineering Image 2"></div>
+      <div class="slide"><img src="Picture6.png" alt="Mechanical Engineering Image 3"></div>
+      <div class="slide"><img src="Picture7.png" alt="Mechanical Engineering Image 4"></div>
+      <div class="slide"><img src="Picture8.png" alt="Mechanical Engineering Image 5"></div>
+      <div class="slide"><img src="Picture9.png" alt="Mechanical Engineering Image 6"></div>
+      <div class="slide"><img src="Picture10.png" alt="Mechanical Engineering Image 7"></div>
+    </div>
+
+    <div class="dropdown-overlay">
+      <div class="dropdown-content-section">
+        <h2>Mechanical Engineering Services</h2>
+        <div class="section-content">
+          <div class="service-card">
+            <h3>Our Mechanical Engineering Services Include:</h3>
+            <ul>
+              <li>Full scope reline including planning and execution management</li>
+              <li>Skilled Artisans (Diesel mechanics, Auto Electricians, Welders, Boilermakers &amp; Fitters)</li>
+              <li>Training for new equipment installation and maintenance</li>
+              <li>Providing dedicated maintenance crews for machinery</li>
+              <li>Preventive and corrective maintenance programs</li>
+              <li>Equipment commissioning and decommissioning</li>
+            </ul>
+          </div>
+        </div>
       </div>
     </div>
   </section>
 
   <!-- TMM -->
   <section id="tmm" class="content-section">
-    <div class="section-content">
-      <h2>Trackless Mobile Machinery Maintenance</h2>
-      <div class="service-card">
-        <h3>Our TMM Services Include:</h3>
-        <ul>
-          <li>Workshop Support Services (Deployment of Maintenance Team)</li>
-          <li>Development of Maintenance Strategies and Systems</li>
-          <li>Legal Compliance and Contractor Management</li>
-          <li>Hydraulic system Repairs and maintenance</li>
-          <li>Comprehensive Maintenance Planning</li>
-          <li>Supply of genuine Replacement parts</li>
-          <li>Tyre management and survey services</li>
-          <li>Quarterly Inspections on TMM equipment</li>
-          <li>Machine File Auditing and documentation</li>
-        </ul>
+    <div class="slideshow-background">
+      <div class="slide active"><img src="Picture4.png" alt="TMM Image 1"></div>
+      <div class="slide"><img src="Picture5.png" alt="TMM Image 2"></div>
+      <div class="slide"><img src="Picture6.png" alt="TMM Image 3"></div>
+      <div class="slide"><img src="Picture7.png" alt="TMM Image 4"></div>
+      <div class="slide"><img src="Picture8.png" alt="TMM Image 5"></div>
+      <div class="slide"><img src="Picture9.png" alt="TMM Image 6"></div>
+      <div class="slide"><img src="Picture10.png" alt="TMM Image 7"></div>
+    </div>
+
+    <div class="dropdown-overlay">
+      <div class="dropdown-content-section">
+        <h2>Trackless Mobile Machinery Maintenance</h2>
+        <div class="section-content">
+          <div class="service-card">
+            <h3>Our TMM Services Include:</h3>
+            <ul>
+              <li>Workshop Support Services (Deployment of Maintenance Team)</li>
+              <li>Development of Maintenance Strategies and Systems</li>
+              <li>Legal Compliance and Contractor Management</li>
+              <li>Hydraulic system Repairs and maintenance</li>
+              <li>Comprehensive Maintenance Planning</li>
+              <li>Supply of genuine Replacement parts</li>
+              <li>Tyre management and survey services</li>
+              <li>Quarterly Inspections on TMM equipment</li>
+              <li>Machine File Auditing and documentation</li>
+            </ul>
+          </div>
+        </div>
       </div>
     </div>
   </section>
 
   <!-- CONSULTATION -->
   <section id="consultation" class="content-section">
-    <div class="section-content">
-      <h2>Consultation Services</h2>
-      <div class="service-card">
-        <h3>Our Consultation Services Include:</h3>
-        <ul>
-          <li>Mechanical &amp; Civil Engineering Consulting and Design</li>
-          <li>Training for new equipment installation and maintenance procedures</li>
-          <li>Technical consulting and comprehensive report drafting</li>
-          <li>Non-Destructive Testing (NDT) on Earth Moving Machinery</li>
-          <li>Feasibility studies and project planning</li>
-          <li>Safety compliance audits and recommendations</li>
-        </ul>
+    <div class="slideshow-background">
+      <div class="slide active"><img src="Picture4.png" alt="Consultation Image 1"></div>
+      <div class="slide"><img src="Picture5.png" alt="Consultation Image 2"></div>
+      <div class="slide"><img src="Picture6.png" alt="Consultation Image 3"></div>
+      <div class="slide"><img src="Picture7.png" alt="Consultation Image 4"></div>
+      <div class="slide"><img src="Picture8.png" alt="Consultation Image 5"></div>
+      <div class="slide"><img src="Picture9.png" alt="Consultation Image 6"></div>
+      <div class="slide"><img src="Picture10.png" alt="Consultation Image 7"></div>
+    </div>
+
+    <div class="dropdown-overlay">
+      <div class="dropdown-content-section">
+        <h2>Consultation Services</h2>
+        <div class="section-content">
+          <div class="service-card">
+            <h3>Our Consultation Services Include:</h3>
+            <ul>
+              <li>Mechanical &amp; Civil Engineering Consulting and Design</li>
+              <li>Training for new equipment installation and maintenance procedures</li>
+              <li>Technical consulting and comprehensive report drafting</li>
+              <li>Non-Destructive Testing (NDT) on Earth Moving Machinery</li>
+              <li>Feasibility studies and project planning</li>
+              <li>Safety compliance audits and recommendations</li>
+            </ul>
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -334,8 +499,35 @@
       this.reset();
     });
 
-    // set default on load
-    document.addEventListener('DOMContentLoaded',()=>showSection('home'));
+    // Background slideshow for all sections with slideshow
+    let currentSlide = 0;
+    const allSlideshows = document.querySelectorAll('.slideshow-background');
+    
+    function startSlideshows() {
+      if (allSlideshows.length === 0) return;
+      
+      setInterval(() => {
+        allSlideshows.forEach(slideshow => {
+          const slides = slideshow.querySelectorAll('.slide');
+          if (slides.length === 0) return;
+          
+          // Remove active class from current slide
+          slides[currentSlide].classList.remove('active');
+          
+          // Move to next slide
+          currentSlide = (currentSlide + 1) % slides.length;
+          
+          // Add active class to new slide
+          slides[currentSlide].classList.add('active');
+        });
+      }, 4000); // Change slide every 4 seconds
+    }
+
+    // Start slideshows when page loads
+    document.addEventListener('DOMContentLoaded', () => {
+      showSection('home');
+      startSlideshows();
+    });
   </script>
 </body>
 </html>
