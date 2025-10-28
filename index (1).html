@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Hlophekane Engineering and General Services</title>
+  <style>
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{font-family:Arial,Helvetica,sans-serif;background:#f5f5f5;line-height:1.6}
+    header{
+      background:#202020;color:#fff;display:flex;justify-content:space-between;
+      align-items:center;padding:12px 28px;position:fixed;top:0;width:100%;z-index:1200;
+      box-shadow:0 2px 10px rgba(0,0,0,.3)
+    }
+    .logo{display:flex;align-items:center;cursor:pointer}
+    .logo img{height:48px;margin-right:10px;display:block}
+    .logo span{color:#ff6600;font-weight:700;font-size:20px}
+    .menu-toggle{display:none;background:none;border:0;color:#fff;font-size:24px;cursor:pointer}
+    nav{display:flex;align-items:center;gap:10px}
+    nav a{color:#fff;text-decoration:none;margin:0 10px;font-weight:700;padding:6px 0;cursor:pointer}
+    nav a.active, nav a:hover{color:#ff6600}
+    .dropdown{position:relative}
+    .dropdown > a::after{content:" ▾";font-weight:700;margin-left:6px}
+    .dropdown-content{
+      display:none;position:absolute;top:100%;left:0;background:#202020;min-width:240px;
+      box-shadow:0 8px 16px rgba(0,0,0,.4);border-radius:6px;overflow:hidden;padding:6px 0;z-index:1300
+    }
+    .dropdown-content a{
+      display:block;color:#fff;padding:10px 16px;text-decoration:none;font-size:15px;font-weight:500
+    }
+    .dropdown-content a:hover{background:#ff6600;color:#fff}
+    .dropdown:hover .dropdown-content{display:block}
+
+    .content-section{display:none;min-height:100vh;padding:120px 24px 80px 24px;max-width:1100px;margin:0 auto}
+    .content-section.active{display:block}
+
+    /* Home hero */
+    #home {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  text-align: center;
+  background: linear-gradient(rgba(0,0,0,.45), rgba(0,0,0,.45)), url('Picture2.png') center/cover no-repeat;
+  padding: 0 !important; /* Remove any padding */
+  margin: 0; /* Remove any margin */
+  width: 100%; /* Ensure full width */
+  max-width: none; /* Remove max-width constraint */
+}
+    .hero-content {
+  max-width: 900px;
+  padding: 0 18px;
+  width: 100%; /* Ensure content takes full available width */
+}
+    .hero-content h1{font-size:2.8rem;margin-bottom:14px;text-shadow:2px 2px 6px rgba(0,0,0,.6)}
+    .hero-content p{font-size:1.1rem;margin-bottom:18px;text-shadow:1px 1px 3px rgba(0,0,0,.6)}
+    .cta-button{background:#ff6600;color:#fff;padding:12px 28px;border-radius:6px;font-weight:700;cursor:pointer;display:inline-block}
+    .cta-button:hover{background:#e55a00}
+
+    .section-content{background:#fff;padding:30px;border-radius:8px;box-shadow:0 2px 10px rgba(0,0,0,.08)}
+    .section-content h2{color:#ff6600;border-bottom:3px solid #ff6600;display:inline-block;margin-bottom:18px;font-size:1.6rem}
+    .service-card{background:#f9f9f9;padding:18px;border-radius:8px;margin:12px 0;border-left:4px solid #ff6600}
+    ul{list-style:none;padding-left:0}
+    ul li{position:relative;padding-left:24px;margin:8px 0}
+    ul li::before{content:"✓";position:absolute;left:0;color:#ff6600;font-weight:700}
+
+    /* contact form */
+    .form-group{margin-bottom:14px}
+    input[type=text],input[type=email],input[type=tel],select,textarea{
+      width:100%;padding:11px;border:2px solid #ddd;border-radius:6px;font-size:15px
+    }
+    input:focus,textarea:focus,select:focus{outline:none;border-color:#ff6600}
+    .submit-btn{background:#ff6600;color:#fff;padding:12px 20px;border-radius:6px;border:0;font-weight:700;cursor:pointer}
+    .submit-btn:hover{background:#e55a00}
+
+    footer{background:#202020;color:#fff;text-align:center;padding:18px 12px;position:fixed;bottom:0;width:100%}
+
+    @media(max-width:768px){
+      .menu-toggle{display:block}
+      nav{display:none;flex-direction:column;width:100%;margin-top:8px;padding-bottom:8px}
+      nav.active{display:flex}
+      nav a{margin:6px 0;padding:10px;border-bottom:1px solid #333;width:100%}
+      .dropdown-content{position:static;box-shadow:none;margin-left:8px}
+      .content-section{padding:110px 16px 120px 16px}
+      .hero-content h1{font-size:2rem}
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="logo" id="logoBtn">
+      <img src="Picture1.png" alt="Hlophekane Logo">
+      <span>Hlophekane Engineering</span>
+    </div>
+
+    <button class="menu-toggle" id="menuToggle">☰</button>
+
+    <nav id="mainNav">
+      <a class="nav-link active" data-target="home">Home</a>
+      <a class="nav-link" data-target="about">About Us</a>
+
+      <div class="dropdown">
+        <a class="nav-link" data-target="services">Services</a>
+        <div class="dropdown-content">
+          <a class="nav-link" data-target="mechanical">Mechanical Engineering</a>
+          <a class="nav-link" data-target="tmm">Trackless Mobile Machinery</a>
+          <a class="nav-link" data-target="consultation">Consultation</a>
+        </div>
+      </div>
+
+      <a class="nav-link" data-target="opportunities">Opportunities</a>
+      <a class="nav-link" data-target="contact">Contact Us</a>
+    </nav>
+  </header>
+
+  <!-- HOME -->
+  <section id="home" class="content-section active">
+    <div class="hero-content">
+      <h1>Welcome to Hlophekane Engineering &amp; General Services</h1>
+      <p>Your trusted partner for engineering solutions and general services in South Africa</p>
+      <div class="cta-button" id="ctaContact">Get In Touch</div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about" class="content-section">
+    <div class="section-content">
+      <h2>About Us</h2>
+      <p>Established in 2015, <strong>Hlophekane Engineering and General Services (Pty) Ltd</strong> is a proudly South African, black-owned company dedicated to delivering exceptional procurement consulting and supply solutions to corporate clients and government entities. Our client-focused approach drives us to provide reliable, high-quality services, including goods distribution, contractor rental, equipment leasing, and truck rental. We're committed to upholding the highest standards of professionalism, sustainability, and social responsibility.</p>
+
+      <p>At Hlophekane Engineering and General Services (Pty) Ltd, we integrate sustainable business practices into every aspect of our operations, ensuring a positive impact on the socio-economic landscape. Our team is dedicated to exceeding client expectations, fostering trust, and building lasting partnerships. With a foundation of sound research, feasibility studies, and optimistic outlook, we are confident in our ability to grow and succeed as a leading service provider in South Africa.</p>
+
+      <div class="service-card">
+        <h3>Mission</h3>
+        <p>Our mission is to deliver innovative, high-quality services that empower our clients and community, while driving sustainable growth and positive impact. We are committed to leveraging our expertise to eradicate poverty, improve quality of life, and promote health and safety in the mining industry, guided by sound values and pragmatic business ethics.</p>
+      </div>
+
+      <div class="service-card">
+        <h3>Vision</h3>
+        <p>We envision being South Africa's leading and most trusted service providers, renowned for our professional practices, positive impact, and responsible business ethics. We strive to be the employer of choice and a valued partner in driving growth and prosperity, built on a foundation of excellence, integrity, and sustainability.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES OVERVIEW -->
+  <section id="services" class="content-section">
+    <div class="section-content">
+      <h2>Our Services</h2>
+      <p>We offer comprehensive engineering and maintenance solutions tailored to meet your specific needs.</p>
+
+      <div class="service-card" onclick="showSection('mechanical')" style="cursor:pointer">
+        <h3>Mechanical Engineering</h3>
+        <p>Complete mechanical engineering solutions including maintenance, repairs, and technical support.</p>
+      </div>
+
+      <div class="service-card" onclick="showSection('tmm')" style="cursor:pointer">
+        <h3>Trackless Mobile Machinery</h3>
+        <p>Specialized maintenance and repair services for trackless mobile machinery in mining and construction.</p>
+      </div>
+
+      <div class="service-card" onclick="showSection('consultation')" style="cursor:pointer">
+        <h3>Consultation Services</h3>
+        <p>Expert consulting services for engineering projects, maintenance strategies, and technical solutions.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- MECHANICAL -->
+  <section id="mechanical" class="content-section">
+    <div class="section-content">
+      <h2>Mechanical Engineering Services</h2>
+      <div class="service-card">
+        <h3>Our Mechanical Engineering Services Include:</h3>
+        <ul>
+          <li>Full scope reline including planning and execution management</li>
+          <li>Skilled Artisans (Diesel mechanics, Auto Electricians, Welders, Boilermakers &amp; Fitters)</li>
+          <li>Training for new equipment installation and maintenance</li>
+          <li>Providing dedicated maintenance crews for machinery</li>
+          <li>Preventive and corrective maintenance programs</li>
+          <li>Equipment commissioning and decommissioning</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- TMM -->
+  <section id="tmm" class="content-section">
+    <div class="section-content">
+      <h2>Trackless Mobile Machinery Maintenance</h2>
+      <div class="service-card">
+        <h3>Our TMM Services Include:</h3>
+        <ul>
+          <li>Workshop Support Services (Deployment of Maintenance Team)</li>
+          <li>Development of Maintenance Strategies and Systems</li>
+          <li>Legal Compliance and Contractor Management</li>
+          <li>Hydraulic system Repairs and maintenance</li>
+          <li>Comprehensive Maintenance Planning</li>
+          <li>Supply of genuine Replacement parts</li>
+          <li>Tyre management and survey services</li>
+          <li>Quarterly Inspections on TMM equipment</li>
+          <li>Machine File Auditing and documentation</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONSULTATION -->
+  <section id="consultation" class="content-section">
+    <div class="section-content">
+      <h2>Consultation Services</h2>
+      <div class="service-card">
+        <h3>Our Consultation Services Include:</h3>
+        <ul>
+          <li>Mechanical &amp; Civil Engineering Consulting and Design</li>
+          <li>Training for new equipment installation and maintenance procedures</li>
+          <li>Technical consulting and comprehensive report drafting</li>
+          <li>Non-Destructive Testing (NDT) on Earth Moving Machinery</li>
+          <li>Feasibility studies and project planning</li>
+          <li>Safety compliance audits and recommendations</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- OPPORTUNITIES -->
+  <section id="opportunities" class="content-section">
+    <div class="section-content">
+      <h2>Career Opportunities</h2>
+      <div class="service-card">
+        <h3>Current Openings</h3>
+        <p>We're always looking for talented professionals. Current opportunities include:</p>
+        <ul>
+          <li>Mechanical Engineers</li>
+          <li>Diesel Mechanics</li>
+          <li>Auto Electricians</li>
+          <li>Boilermakers and Welders</li>
+          <li>Project Managers</li>
+          <li>Maintenance Planners</li>
+        </ul>
+      </div>
+
+      <div class="service-card">
+        <h3>How to Apply</h3>
+        <p>Send your CV and cover letter to: careers@hlophekane.co.za</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact" class="content-section">
+    <div class="section-content">
+      <h2>Contact Us</h2>
+      <p>Get in touch with us to discuss how we can support your engineering needs.</p>
+
+      <div class="contact-form">
+        <h3>Send us a Message</h3>
+        <form id="contactForm">
+          <div class="form-group"><label>Full Name *</label><input id="name" type="text" required></div>
+          <div class="form-group"><label>Email Address *</label><input id="email" type="email" required></div>
+          <div class="form-group"><label>Phone Number</label><input id="phone" type="tel"></div>
+          <div class="form-group">
+            <label>Service Interested In</label>
+            <select id="service"><option value="">Select a service</option>
+              <option value="mechanical">Mechanical Engineering</option>
+              <option value="tmm">Trackless Mobile Machinery</option>
+              <option value="consultation">Consultation Services</option>
+              <option value="other">Other</option>
+            </select>
+          </div>
+          <div class="form-group"><label>Your Message *</label><textarea id="message" required placeholder="Please describe what you're looking for..."></textarea></div>
+          <button class="submit-btn" type="submit">Send Message</button>
+        </form>
+      </div>
+
+      <div class="contact-info" style="margin-top:18px;padding:18px;background:#f9f9f9;border-left:4px solid #ff6600;border-radius:8px">
+        <h3 style="color:#ff6600;margin-bottom:8px">Contact Information</h3>
+        <p><strong>Call us on:</strong> 073 251 6478 / 063 606 8038</p>
+        <p><strong>Enquiries:</strong> Baloyihlopheka10@gmail.com</p>
+        <p><strong>Sales/Quotations:</strong> Baloyijohannes1@gmail.com</p>
+        <p><strong>Hours:</strong> Mon-Fri 08:00-17:00, Sat 08:00-13:00</p>
+      </div>
+    </div>
+  </section>
+
+  <footer>&copy; 2025 Hlophekane Engineering and General Services (Pty) Ltd. All rights reserved.</footer>
+
+  <script>
+    // show/hide sections and active nav state
+    function showSection(id){
+      document.querySelectorAll('.content-section').forEach(s=>s.classList.remove('active'));
+      const el = document.getElementById(id);
+      if(!el) return;
+      el.classList.add('active');
+
+      // show hero only for home
+      document.getElementById('home').style.display = (id==='home' ? 'flex' : 'none');
+
+      // set nav active
+      document.querySelectorAll('.nav-link').forEach(link=>{
+        link.classList.toggle('active', link.getAttribute('data-target')===id);
+      });
+
+      // hide mobile menu if open
+      document.getElementById('mainNav').classList.remove('active');
+      window.scrollTo({top:0,behavior:'instant'});
+    }
+
+    // attach events to links
+    document.querySelectorAll('.nav-link').forEach(link=>{
+      link.addEventListener('click',function(e){
+        e.preventDefault();
+        const target = this.getAttribute('data-target');
+        if(target) showSection(target);
+      });
+    });
+
+    // logo click -> home
+    document.getElementById('logoBtn').addEventListener('click',()=>showSection('home'));
+
+    // CTA button
+    document.getElementById('ctaContact').addEventListener('click',()=>showSection('contact'));
+
+    // mobile menu toggle
+    document.getElementById('menuToggle').addEventListener('click',()=>{
+      document.getElementById('mainNav').classList.toggle('active');
+    });
+
+    // contact form (example behavior)
+    document.getElementById('contactForm').addEventListener('submit',function(e){
+      e.preventDefault();
+      alert('Thank you — we received your message.');
+      this.reset();
+    });
+
+    // set default on load
+    document.addEventListener('DOMContentLoaded',()=>showSection('home'));
+  </script>
+</body>
+</html>
